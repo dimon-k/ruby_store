@@ -11,3 +11,5 @@ end
 if DB
   Sequel::Migrator.run(DB, File.join(File.dirname(__FILE__), '..', 'db', 'migrations'))
 end
+
+Dir['./app/models/*.rb'].each { |file| require file }
