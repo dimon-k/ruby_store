@@ -22,7 +22,7 @@ class Checkout < Sequel::Model
   end
 
   def all_items_sum
-    [green_tea_sum, strawberries_sum, coffee_sum].sum
+    [green_tea_sum, strawberries_sum, coffee_sum, other_items_sum].sum
   end
 
   def green_tea_sum(tea_items: products('GR1'))
@@ -44,6 +44,14 @@ class Checkout < Sequel::Model
     return regular_sum(coffee_items) unless coffee_promo && coffee_items.count >= 3
 
     regular_sum(coffee_items) / 3 * 2
+  end
+
+  def other_items_sum
+    product_ids = [product_id('GR1'), product_id('SR1'), product_id('CF1')]
+    other_items = CheckoutItem.where(checkout_id: id).exclude(product_id: product_ids).map(&:product).map(&:price)
+    return 0 unless other_items.any?
+
+    regular_sum(other_items)
   end
 
   def products(product_code)
