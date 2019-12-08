@@ -18,7 +18,7 @@ class Checkout < Sequel::Model
 
   def validate
     super
-    errors.add(:coffee_promo, "You are not allow to change coffee promotion!") unless coffee_promo.nil?
+    errors.add(:coffee_promo, 'You are not allowed to change coffee promotion!') unless coffee_promo.nil?
   end
 
   def all_items_sum

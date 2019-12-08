@@ -2,9 +2,9 @@ class CreateTableProducts < Sequel::Migration
   def up
     create_table :products do
       primary_key :id
-      String :name, null: false
-      String :product_code, null: false
-      Float :price, null: false
+      String      :name,         null: false
+      String      :product_code, null: false
+      Float       :price,        null: false
     end
   end
 

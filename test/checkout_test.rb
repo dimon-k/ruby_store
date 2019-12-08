@@ -7,7 +7,7 @@ class CheckoutTest < Test::Unit::TestCase
                      { product_code: 'SR1', name: 'Strawberries', price: 5.00  },
                      { product_code: 'CF1', name: 'Coffee',       price: 11.23 }]
     product_items.each { |item| Product.find_or_create(item) }
-    @pricing_rules = { green_tea_promo: true, strawberries_promo: true}
+    @pricing_rules = { green_tea_promo: true, strawberries_promo: true }
   end
 
   def test_scan
@@ -41,7 +41,7 @@ class CheckoutTest < Test::Unit::TestCase
   end
 
   def test_new_items
-    Product.find_or_create({ product_code: 'DC1', name: 'Dark chocolate',    price: 0.99  })
+    Product.find_or_create({ product_code: 'DC1', name: 'Dark chocolate', price: 0.99 })
     checkout = scan_checkout_items(['GR1', 'GR1', 'SR1', 'SR1', 'DC1', 'CF1'])
     assert_equal(25.33, checkout.total)
   end
