@@ -1,3 +1,4 @@
+require './config/application'
 require 'test/unit'
 
 class CheckoutTest < Test::Unit::TestCase
