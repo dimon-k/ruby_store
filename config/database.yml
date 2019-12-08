@@ -1,0 +1,2 @@
+adapter: sqlite
+database: "./db/ruby_store_database.db"
