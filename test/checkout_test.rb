@@ -39,6 +39,12 @@ class CheckoutTest < Test::Unit::TestCase
     checkout = scan_checkout_items(['GR1', 'CF1', 'SR1', 'CF1', 'CF1'])
     assert_equal(30.57, checkout.total)
   end
+
+  def test_new_items
+    Product.find_or_create({ product_code: 'DC1', name: 'Dark chocolate',    price: 0.99  })
+    checkout = scan_checkout_items(['GR1', 'GR1', 'SR1', 'SR1', 'DC1', 'CF1'])
+    assert_equal(25.33, checkout.total)
+  end
   
   private
 
